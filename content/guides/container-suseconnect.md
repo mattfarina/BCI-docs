@@ -6,28 +6,27 @@ slug: container-suseconnect
 # What is container-suseconnect?
 
 [`container-suseconnect`](https://github.com/SUSE/container-suseconnect) is a
-zypper plugin that is preinstalled in all Base Container Images which are
-shipped with zypper. The plugin will automatically reuse your host's SUSE Linux
-Enterprise Server subscription (if present) and register the running container
-automatically. Thereby you gain access to the full SUSE Linux Enterprise
-repositories, including additional modules and previous package versions which
-are not part of the free SLE_BCI repository.
+Zypper plugin available in all Base Container Images that ship with Zypper. When
+the plugin detects the host's SUSE Linux Enterprise Server, it automatically
+registers the running container. This gives access the SUSE Linux
+Enterprise repositories. This includes additional modules and previous package
+versions that are not part of the free SLE_BCI repository.
 
 ## How to use container-suseconnect
 
-If you are running a registered SLES system with docker, then there is nothing
-that you need to do for `container-suseconnect` to pick up your subscription.
+If you are running a registered SLES system with Docker, `container-suseconnect`
+automatically detects and uses the subscription, without requiring any action on
+your part.
 
-On openSUSE systems with docker, you will have to copy the files
-`/etc/SUSEConnect` and `/etc/zypp/credentials.d/SCCcredentials` from a
-registered SLES machine to your local machine (`/etc/SUSEConnect` is only
-required if you are using RMT for managing your registration credentials; In
-most cases it is not required). `container-suseconnect` will then automatically
-pick up your subscription as well.
+On openSUSE systems with Docker, you must copy the files `/etc/SUSEConnect` and
+`/etc/zypp/credentials.d/SCCcredentials` from a registered SLES machine to your
+local machine. Note that the `/etc/SUSEConnect` file is required only if you are
+using RMT for managing your registration credentials.
 
-## How to use container-suseconnect on non-SLE hosts or with podman and buildah or with nerdctl
+## How to use container-suseconnect on non-SLE hosts or with Podman, Buildah or with nerdctl
 
-First, you need to have access to a registered SLES system. This can be a
+To use `container-suseconnect` on non-SLE hosts or with Podman, Buildah or
+with nerdctl, you need to have access to a registered SLES system. This can be a
 physical machine, a virtual machine or the bci-base container into which you
 install `SUSEConnect` and register the machine. Unless you are using RMT to
 manage your subscription codes, you only have to copy
